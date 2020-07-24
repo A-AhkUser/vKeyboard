@@ -6,8 +6,8 @@
 
 <table align="center">
 	<tr>
-	<td><img src=".png" /></td>
-	<td><img src=".png" /></td>
+	<td><img src="https://raw.githubusercontent.com/A-AhkUser/resources/master/vKeyboard_1.png" /></td>
+	<td><img src="https://raw.githubusercontent.com/A-AhkUser/resources/master/vKeyboard_2.png" /></td>
 	</tr>
 </table>
 
@@ -79,7 +79,7 @@ The library allows to create basic but nevertheless rather customizable visual k
 *An instance of ``vKeyboard`` (the visual keyboard object) will be from now on referred to as ``vk``.*
 
 - Make sure you have [a recent version of AutoHotkey](https://www.autohotkey.com/) (AutoHotkey v1.1.32.00+, preferably).
-- Download this repository from [zip/master](https://github.com/A-AhkUser/vKeyboard/archive/master.zip) and extract the content of the zip file to a location of your choice, for example into your project's folder hierarchy.
+- Download [the latest release](https://github.com/A-AhkUser/vKeyboard/releases) and extract the content of the zip file to a location of your choice, for example into your project's folder hierarchy.
 - Load the library ([/lib/vKeyboard.ahk](/lib/vKeyboard.ahk)) by means of the [``#Include`` directive](https://www.autohotkey.com/docs/commands/_Include.htm):
 
 #### Sample example ([sample_example.ahk](/examples/sample_example))
@@ -317,7 +317,7 @@ vk.setHotkeys(_obj, _joystickPort:=1, _joyModifier:="Joy5")
 
 | parameter | description |
 |:-|:-|
-| ``_obj`` [OBJECT] | An [object](https://www.autohotkey.com/docs/Objects.htm#Usage_Associative_Arrays) that observe the [tree structure](#tree) shown below. It will indicate to the script the value of each keyboard/joystick shortcuts which are to be used by the visual keyboard. If a given value is not passed to the caller, its default value is used instead (see [Keyboard and joystick shortcuts](#keyboard-and-joystick-shortcuts) to get an overview of all default values used by the script). Actually, branches, sub-branches and keys are all optional. Also, the keys for a branch or sub-branch may be in any order within that branch or sub-branch, as they are referenced by name. Note that you can find an example of such JSON description in the script directory: [/examples/test/settings.json](/examples/test/settings.json) - you can copy it and merely set the relevant values at your convenience whilst keeping it within the limitations imposed below on acceptable values. |
+| ``_obj`` [OBJECT] | An [object](https://www.autohotkey.com/docs/Objects.htm#Usage_Associative_Arrays) that observes the [tree structure](#tree) shown below. It will indicate to the script the value of each keyboard/joystick shortcuts which are to be used by the visual keyboard. If a given value is not passed to the caller, its default value is used instead (see [Keyboard and joystick shortcuts](#keyboard-and-joystick-shortcuts) to get an overview of all default values used by the script). Actually, branches, sub-branches and keys are all optional. Also, the keys for a branch or sub-branch may be in any order within that branch or sub-branch, as they are referenced by name. Note that you can find an example of such JSON description in the script directory: [/examples/test/settings.json](/examples/test/settings.json) - you can copy it and merely set the relevant values at your convenience whilst keeping it within the limitations imposed below on acceptable values. |
 | ``_joystickPort`` [INTEGER] *OPTIONAL* | If the computer has more than one joystick and you want to use one beyond the first to control the visual keyboard, specify a positive integer between 2 and **8**. Specify ``0`` for ``_joystickPort`` to avoid setting up joystick hotkeys and polling, seeking for events, joystick axes. |
 | ``_joyModifier`` [INTEGER] *OPTIONAL* | Any joystick button name **without** the joystick number prefix (*e.g.* `Joy1`, `Joy2`, ... and up to `Joy32` - at least if your joystick controller actually has 32 buttons). It will be used as 'modifier' - so that you would hold down it then press a second joystick button to trigger the joystick hotkey. It must be represented by a ``!`` (that is, an exclamation mark) right before the key name (e.g. !Joy3) in ``_obj``'s values. |
 
@@ -552,7 +552,7 @@ vk.onShowHide(Func("myShowHideEventMonitor"))
 ```
 ***
 ##### description:
-Executes a user-defined function each time the keyboard is shown/hidden (*by means of the ``onShowHide`` method*).</br>
+Executes a user-defined function each time the keyboard is shown/hidden (*by means of the ``showHide`` method*).</br>
 The function can optionally accept the following parameters:</br>
 ``myShowHideEventMonitor(this, _isVisible)``
 
@@ -643,7 +643,7 @@ Use [``eAutocomplete.setSourceFromFile`` or ``eAutocomplete.setSourceFromVar``](
 ***
 ### Styling the keyboard
 
-So far, you can use the following setters/getters to style - using a 6-digit RGB color values - the autocomplete control:
+So far, you can use the following setters/getters to style - using 6-digit RGB color values - the autocomplete control:
 
 - ``vk.autocomplete.bkColor``
 - ``vk.autocomplete.fontName``
@@ -826,9 +826,11 @@ Unless you specified a custom default object wrapper when calling [defineLayout]
 
 ***
 
-<p align="center">
-  <img src=".png" />
-</p>
+<table align="center">
+	<tr>
+	<td><img src="https://raw.githubusercontent.com/A-AhkUser/resources/master/keyWithVariantsProc.png" /></td>
+	</tr>
+</table>
 
 ***
 
