@@ -28,7 +28,7 @@ vk.setHotkeys({}, 1, "Joy5") ; set up all keyboard/joystick shortcuts to their r
 ; for the given `vKeyboard` instance, subscribing to the first logical joystick port and using 'Joy5' as joystick 'modifier' key
 vk.showHide() ; this shows the visual keyboard if it is hidden and vice versa
 vk.fitContent(18, 7, true) ; resize the visual keyboard so that it fits its new content, given a
-; font size value (here 16) and a 'padding' value (here 5)
+; font size value (here 18) and a 'padding' value (here 7)
 OnExit, handleExit ; specifies a callback function or subroutine to run automatically when the script exits
 return
 
@@ -40,10 +40,13 @@ ExitApp
 
 !x::ExitApp ; ALT+X
 
-customCb(this, _keyDescriptor, _count) {
+customCb(this, _keyDescriptor, _count) { ; the custom default callback
+; _keyDescriptor 	Contains a reference to the descriptor of the key whose click/press triggered the f-function.
+; _count 	A non-zero integer which represents the number of clicks or presses that triggered the callback.
+; 		Up to 3 consecutive presses/clicks are detected as such - while -1 stands for a long click/press.
 	local
 	_clickOrPressSubString := (A_ThisHotkey = "LButton") ? "clicked on" : "pressed"
-	ToolTip, % "You " . _clickOrPressSubString . " the '" . _keyDescriptor.caption . "' key "
+	ToolTip, % "You " . _clickOrPressSubString . " the '" . _keyDescriptor.caption . "' [" . this.X "," .  this.Y "] key "
 		. ((_count = -1) ? "a long time" : _count . "time(s)") . "!", 0, 0, 1
 ; return 0
 }
