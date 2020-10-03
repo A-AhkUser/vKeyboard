@@ -103,7 +103,7 @@ Class Joystick {
 			try run % _directory . "\JoystickDeviceManagement.ahk" A_Space A_ScriptHwnd ; <<< for non-complied scripts
 			catch _exception {
 				throw Exception("Failed to lunch the JoystickDeviceManagement service. The script will exit.", -1, _exception.extra)
-			ExitApp
+			; ExitApp
 			}
 			sleep, 300
 		}
@@ -292,7 +292,7 @@ Class Joystick {
 			for _i, _fn in _args {
 				if not (IsObject(_fn) || _args[_i]:=Func(_fn)) {
 					throw Exception("Invalid callback.", -1)
-				return
+				; return
 				}
 			}
 			for _i, _fn in _args
@@ -310,7 +310,7 @@ Class Joystick {
 			try _functor:=new _obj(_args*)
 			catch _exception {
 				throw Exception(_exception.message, -1, _exception.extra)
-			return
+			; return
 			}
 			_inst["__" . LTrim(_callee, "on")] := _functor
 		}
