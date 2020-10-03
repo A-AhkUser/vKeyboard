@@ -205,7 +205,7 @@ vk_map_load(_name, _pathOrContent, _defaultFFunction) {
 	try vKeyboard.defineLayout(_name, _pathOrContent,, defaultFFunction, true)
 	catch _exception {
 		throw Exception("Invalid keyboard mapping.", -1, _exception.message)
-	return
+	; return
 	}
 	vKeyboard.defineLayout(_name, _pathOrContent,, _defaultFFunction, false)
 	_map := vKeyboard._keymaps[_name] ; internal property
@@ -215,13 +215,13 @@ vk_map_load(_name, _pathOrContent, _defaultFFunction) {
 				if (_v.hasKey(userDefinedFuncKeyName)) {
 					throw Exception("'" . userDefinedFuncKeyName
 					. "' is reserved by the script as key's descriptor key. Could not load the keyboard mapping.", -1)
-				return
+				; return
 				}
 				if (_v.hasKey("f")) {
 					if (_v.f = userDefinedFuncKeyName) {
 						throw Exception("'" . userDefinedFuncKeyName
 						. "' is reserved by the script as f-function name. Could not load the keyboard mapping.", -1)
-					return
+					; return
 					}
 					_row[_k][userDefinedFuncKeyName] := _v.f, _row[_k].delete("f")
 				}
