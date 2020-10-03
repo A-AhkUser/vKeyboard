@@ -97,14 +97,14 @@
 		WinGetClass, _className, % "ahk_id " . this._hWnd0:=_hWndActiveX
 		if (_className <> "Internet Explorer_Server") {
 			throw Exception("The host control is not a valid ActiveX control.", -1, _hWndActiveX)
-		return
+		; return
 		}
 		for _each, _class in _classes {
 			_hWndActiveX := DllCall("user32\GetAncestor", "Ptr", _hWndActiveX, "UInt", 1, "Ptr") ; GA_PARENT := 1 (cf. https://www.autohotkey.com/boards/viewtopic.php?t=49374#profile219333)
 			WinGetClass, _className, % "ahk_id " . _hWndActiveX
 			if (_className <> _class) {
 				throw Exception("The host control is not a valid ActiveX control.", -1, _hWndActiveX)
-			return
+			; return
 			}
 		}
 		GuiControlGet, _AXWrapperObject,, % this.HWND:=_hWndActiveX
@@ -301,14 +301,14 @@ Class _KeypadGraphicsMapping extends _KeypadAXObjectWrapper {
 		local
 		if not (StrLen(_name)) {
 			throw Exception("The style name is not valid.", -1, "")
-		return
+		; return
 		}
 		SplitPath, % _pathOrContent,,,,, _outDrive
 		if (_outDrive <> "") {
 			try _fileObject:=FileOpen(_pathOrContent, 4+8+0, "UTF-8")
 			catch {
 				throw Exception("Failed attempt to open the file.", -1)
-			return
+			; return
 			}
 			_cascadingStyleSheet := _fileObject.read(), _fileObject.close()
 		} else _cascadingStyleSheet := _pathOrContent
@@ -410,7 +410,7 @@ Class _KeypadGraphicsMapping extends _KeypadAXObjectWrapper {
 			; }
 			if not (IsObject(this._defaultObjectWrapper:=_defaultObjectWrapper)) {
 				throw Exception("The object wrapper does not exist.",, _defaultObjectWrapper)
-			return
+			; return
 			}
 			if (_defaultCallback = "") {
 				this._defaultCallback := "call"
@@ -419,7 +419,7 @@ Class _KeypadGraphicsMapping extends _KeypadAXObjectWrapper {
 					_methodName := _defaultObjectWrapper.__Class . "." . _defaultCallback
 					if not (IsFunc(_methodName)) {
 						throw Exception("The function or method does not exist.",, _defaultCallback " / " _methodName)
-					return
+					; return
 					}
 					_defaultCallback := Func(_defaultObjectWrapper.__Class . "." . _defaultCallback)
 				}
@@ -428,12 +428,12 @@ Class _KeypadGraphicsMapping extends _KeypadAXObjectWrapper {
 			try this._map:= _map := JSON.Load(_objectDescription)
 			catch _exception {
 				throw _exception
-			return
+			; return
 			}
 			if (_validate) {
 				if not (this._validateMap(_map)) {
 					throw Exception("Invalid map.")
-				return
+				; return
 				}
 			}
 			; (IsByRef(_objectDescription) && _objectDescription := JSON.Dump(_map,, 4))
@@ -487,7 +487,7 @@ Class _KeypadGraphicsMapping extends _KeypadAXObjectWrapper {
 		try _inst := new _obj.Keymap(_name, _objectDescription, _defaultObjectWrapper,  _defaultCallback) ; +++++++
 		catch _exception {
 			throw Exception(_exception.message, -1, _exception.extra)
-		return
+		; return
 		}
 		_obj._keymaps[_name] := _inst._map
 	}
@@ -727,7 +727,7 @@ Class _KeypadEvents extends _KeypadGraphicsMapping {
 				if ((GetKeyName(this._keyWaitParam:=_keyName) = "")
 				&& !(this._keyWaitParam:=RegExReplace(_keyName:=Trim(_keyName), "i)^\d{1,2}(?=Joy\d{1,2}$)", ""))) {
 					throw Exception("""" . _keyName . """ is not a valid key name.")
-				return
+				; return
 				}
 				base.__New(_keyName, true, -2)
 				this.onEvent(_fn_, _fn)
@@ -865,7 +865,7 @@ Class _Keypad extends _KeypadEvents {
 			return this._docRef.getElementById("userDefined").innerText :=  this._style:=_style:="" ; ++++
 		if not (this._cascadingStyleSheets.hasKey(_style)) {
 			throw Exception("The style does not exist.", -1, _style)
-		return
+		; return
 		}
 		this._docRef.getElementById("userDefined").innerText := this._cascadingStyleSheets[ this._style:=_style ]
 	} ; ++++
