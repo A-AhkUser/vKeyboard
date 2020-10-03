@@ -44,7 +44,7 @@ Class Keypad extends _Keypad {
 			(_center && (this.hostWindow.show(((this.hostWindow.isVisible()) ? "Hide ": "") . "NA XCenter YCenter"))) ; ++++
 		} else {
 			throw Exception("Could not set the specified layout", -1, _layout)
-		return
+		; return
 		}
 	return _r
 	} ; ++++
@@ -54,7 +54,7 @@ Class Keypad extends _Keypad {
 			try base.setStyle(_style)
 			catch _exception {
 				throw Exception(_exception.message, -1, _exception.extra)
-			return
+			; return
 			}
 			_bkColor := this.backgroundColor
 			GUI % this._hostWindow.HWND ":Color", % _bkColor
@@ -159,7 +159,7 @@ Class Keypad extends _Keypad {
 			for _i, _fn in _args {
 				if not (IsObject(_fn) || _args[_i]:=Func(_fn)) {
 					throw Exception("Invalid callback.", -1)
-				return
+				; return
 				}
 			}
 			for _i, _fn in _args
@@ -177,7 +177,7 @@ Class Keypad extends _Keypad {
 			try _functor:=new _obj(_args*)
 			catch _exception {
 				throw Exception(_exception.message, -1, _exception.extra)
-			return
+			; return
 			}
 			_inst["__" . LTrim(_callee, "on")] := _functor
 		}
@@ -253,7 +253,7 @@ Class Keypad extends _Keypad {
 	defineLayout(_name, _pathOrContent, _defaultObjectWrapper:="", _defaultCallback:="", _validate_:=true) {
 		if not (StrLen(_name)) {
 			throw Exception("Invalid layout name.", -1)
-		return
+		; return
 		}
 		this._defineLayout(_name, _pathOrContent, _defaultObjectWrapper, _defaultCallback, _validate_)
 	}
@@ -263,7 +263,7 @@ Class Keypad extends _Keypad {
 			try _fileObject:=FileOpen(_pathOrContent, 4+8+0, "UTF-8")
 			catch {
 				throw Exception("Failed attempt to open the file.", -1)
-			return
+			; return
 			}
 			_objDescription := _fileObject.read(), _fileObject.close()
 		} else _objDescription := _pathOrContent
@@ -274,7 +274,7 @@ Class Keypad extends _Keypad {
 		try _inst := new _obj.Keymap(_name, _objDescription, _defaultObjectWrapper,  _defaultCallback, _validate_) ; +++++++
 		catch _exception {
 			throw Exception(_exception.message, -1, _exception.extra)
-		return
+		; return
 		}
 		_obj._keymaps[_name] := _inst._map
 	} ; ++++++++++
