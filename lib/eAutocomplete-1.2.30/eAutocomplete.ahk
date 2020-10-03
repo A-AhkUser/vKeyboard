@@ -91,17 +91,17 @@ Class eAutocomplete {
 			global eAutocomplete
 			if not (StrLen(_sourceName)) {
 				throw Exception("Invalid source name.")
-			return
+			; return
 			}
 			if (_fileFullPath <> "") {
 				if not (FileExist(_fileFullPath)) {
 					throw Exception("The resource could not be found.")
-				return
+				; return
 				}
 				try _fileObject:=FileOpen(_fileFullPath, 4+8+0, "UTF-8")
 				catch {
 					throw Exception("Failed attempt to open the file.")
-				return
+				; return
 				}
 				_resource := _fileObject.read(), _fileObject.close()
 			}
@@ -568,7 +568,7 @@ Class eAutocomplete {
 			IfWinNotExist
 			{
 				throw Exception("Invalid GUI window.", -1, _GUIID)
-			return
+			; return
 			} ; +++
 		} finally WinExist("ahk_id " . _hLastFoundWindow)
 		GUI, % _GUIID . ":Add", Edit, % _editOptions . " hwnd_hEdit",
@@ -593,7 +593,7 @@ Class eAutocomplete {
 		DetectHiddenWindows % _detectHiddenWindows
 		if not ((_class = "Edit") || (_class = "RICHEDIT50W")) {
 			throw Exception("The host control either does not exist or is not a representative of the class Edit/RICHEDIT50W.", -1, _class)
-		return
+		; return
 		}
 		_GUIID := DllCall("User32.dll\GetAncestor", "Ptr", _hHostControl, "UInt", 2, "Ptr")
 		ControlGet, _style, Style,,, % "ahk_id " . _hHostControl
@@ -637,7 +637,7 @@ Class eAutocomplete {
 		_idProcess := "", DllCall("User32.dll\GetWindowThreadProcessId", "Ptr", _GUIID, "UIntP", _idProcess, "UInt")
 		if not (_idProcess) {
 			throw Exception("Could not retrieve the identifier of the process that created the host window.", -2) ; +++
-		return
+		; return
 		}
 		this._idProcess := _idProcess, this._parent := _GUIID, this._AHKID := "ahk_id " . (this._HWND:=_hHostControl)
 		_classPath := StrSplit(this.__Class, "."), _className := _classPath.removeAt(1) ; +++
