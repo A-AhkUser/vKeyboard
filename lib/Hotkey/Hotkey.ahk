@@ -64,7 +64,7 @@ Class __Hotkey__ extends _Hk {
 		try this._oKeyName := this._validateAndNormalize(_keyName)
 		catch _exception {
 			throw Exception(_exception.message, _excpLevel, _exception.extra)
-		return
+		; return
 		}
 		this.onEvent()
 		; base.__New(this.getKeyName(), this, _that), (_that && _that.delete()) ; +++
@@ -130,7 +130,7 @@ Class __Hotkey__ extends _Hk {
 			for _i, _fn in _args {
 				if not (IsObject(_fn) || _args[_i]:=Func(_fn)) {
 					throw Exception("Invalid callback.", -1)
-				return
+				; return
 				}
 			}
 			for _i, _fn in _args
@@ -148,7 +148,7 @@ Class __Hotkey__ extends _Hk {
 			try _functor:=new _obj(_args*)
 			catch _exception {
 				throw Exception(_exception.message, -1, _exception.extra)
-			return
+			; return
 			}
 			_inst["__" . LTrim(_callee, "on")] := _functor
 		}
@@ -220,7 +220,7 @@ Class _Context {
 		if (StrLen(_group)) {
 			if not (_Context._instances.hasKey(_group)) {
 				throw Exception("The group does not exist.", _excpLevel, _group)
-			return
+			; return
 			}
 			for _ifSubCmd, _subLevel in _Context._instances[_group] {
 				for _param, _array in _subLevel {
@@ -287,7 +287,7 @@ Class _Context {
 		if (_param <> "") {
 			if not (IsObject(_param) || _param:=Func(_param)) {
 				throw Exception("Parameter #1 invalid.", _excpLevel)
-			return
+			; return
 			}
 			_params := [ this, _param, !_isNotVariant ], (!_passHotkey && _params.push(""))
 			_uChecker := this.__upstreamChecker__.bind(_params*)
@@ -298,7 +298,7 @@ Class _Context {
 		} catch _exception {
 			_Context._criterion22 := _lastSetting
 			throw Exception(_exception.message, _excpLevel, _exception.extra)
-		return
+		; return
 		}
 		_Context._criteria.2 := "InTheEvent" . ((_isNotVariant) ? "Not" : "")
 		_Context._criteria.3 := _param
@@ -365,7 +365,7 @@ Class ObjBindTimedMethod {
 		local
         if not (IsObject(_obj)) {
 			throw Exception("Parameter #1 invalid.", -1)
-		return
+		; return
 		}
 		this.fn := (_rawBindMode) ? ObjBindMethod(_obj, _method) : _obj[_method].bind(_obj)
 		this.args := _args
